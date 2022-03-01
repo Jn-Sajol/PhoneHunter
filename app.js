@@ -1,20 +1,25 @@
-
+let main = document.getElementById('main')
 document.getElementById('button').addEventListener('click', () => {
   const getInput = document.getElementById('button-input');
   const inputValue = getInput.value;
-  getInput.value = '';
-
-
+  if(inputValue == ''){
+    alert('its empty')
+    main.innerHTML = '';
+    
+  }
+  else{
   const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
   fetch(url)
     .then(res => res.json())
     .then(datas => display(datas))
+  }
+  getInput.value = '';
 
 })
-
+//Mobile Display Search
 const display = (datas) => {
   const conArray = datas.data;
-  const cutData = conArray.slice(0,20);
+  const cutData = conArray.slice(0, 20);
   // console.log(cutData)
   for (const phone of cutData) {
     // console.log(phone.slug)
@@ -22,7 +27,7 @@ const display = (datas) => {
     const div = document.createElement('div');
     div.classList.add('col');
     div.innerHTML = `
-            <div class="card">
+            <div class="card ">
             <img src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${phone.phone_name}</h5>
@@ -51,7 +56,7 @@ const displayMobileDetails = (detailsData) => {
   const div = document.createElement('div');
   div.classList.add('col');
   div.innerHTML = `
-            <div class="card">
+            <div class="card bg-dark text-white">
             <img src="${dataDetail.image}" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 >Phone Name:${dataDetail.name}</h5>
