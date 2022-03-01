@@ -2,16 +2,16 @@ let main = document.getElementById('main')
 document.getElementById('button').addEventListener('click', () => {
   const getInput = document.getElementById('button-input');
   const inputValue = getInput.value;
-  if(inputValue == ''){
+  if (inputValue == '') {
     alert('its empty')
     main.innerHTML = '';
-    
+
   }
-  else{
-  const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
-  fetch(url)
-    .then(res => res.json())
-    .then(datas => display(datas))
+  else {
+    const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
+    fetch(url)
+      .then(res => res.json())
+      .then(datas => display(datas))
   }
   getInput.value = '';
 
@@ -20,23 +20,27 @@ document.getElementById('button').addEventListener('click', () => {
 const display = (datas) => {
   const conArray = datas.data;
   const cutData = conArray.slice(0, 20);
-  // console.log(cutData)
-  for (const phone of cutData) {
-    // console.log(phone.slug)
-    const getdisplay = document.getElementById('card-group');
-    const div = document.createElement('div');
-    div.classList.add('col');
-    div.innerHTML = `
-            <div class="card ">
+  if (!cutData) {
+    alert('nai')
+  } else {
+    // console.log(cutData)
+    for (const phone of cutData) {
+      // console.log(phone.slug)
+      const getdisplay = document.getElementById('card-group');
+      const div = document.createElement('div');
+      div.classList.add('col');
+      div.innerHTML = `
+            <div class="card rounded">
             <img src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">${phone.phone_name}</h5>
-              <h5 class="card-brand">${phone.brand}</h5>
+              <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
+              <h5 class="card-brand">Phone Brand: ${phone.brand}</h5>
               <button onclick ="displayDitailsFetch('${phone.slug}')" class="btn btn-primary" type="submit">Details</button>
             </div>
           </div>
           `
-    getdisplay.appendChild(div)
+      getdisplay.appendChild(div)
+    }
   }
 }
 
