@@ -1,9 +1,9 @@
 
 document.getElementById('button').addEventListener('click', function () {
   const getInput = document.getElementById('button-input');
-  let inputValue = getInput.value;
+  const inputValue = getInput.value ;
   getInput.value = '';
-
+  
 
   const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
   fetch(url)
@@ -12,20 +12,13 @@ document.getElementById('button').addEventListener('click', function () {
 
 })
 
-function display(datas, inputValue) {
-
-  if (inputValue == datas) {
-    alert("kichu nai")
-  }
-  else {
-
-    for (const phone of datas.data) {
-      // console.log(phone.slug)
-
-      const getdisplay = document.getElementById('card-group');
-      const div = document.createElement('div');
-      div.classList.add('col');
-      div.innerHTML = `
+function display(datas) {
+  for (const phone of datas.data) {
+    // console.log(phone.slug)
+    const getdisplay = document.getElementById('card-group');
+    const div = document.createElement('div');
+    div.classList.add('col');
+    div.innerHTML = `
             <div class="card">
             <img src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -35,33 +28,33 @@ function display(datas, inputValue) {
             </div>
           </div>
           `
-      getdisplay.appendChild(div)
-    }
+    getdisplay.appendChild(div)
   }
 }
 
 //fetch details of mobile
-function displayDitailsFetch(slug) {
+function displayDitailsFetch (slug){
   const url = `https://openapi.programming-hero.com/api/phone/${slug}`
   fetch(url)
-    .then(res => res.json())
-    .then(detailsData => displayMobileDetails(detailsData))
+  .then(res => res.json())
+  .then(detailsData => displayMobileDetails(detailsData))
 }
 
 //diplay details of mobile
-function displayMobileDetails(detailsData) {
+function displayMobileDetails (detailsData){
+  let msg = 'comming soon'
   const dataDetail = detailsData.data;
   const phoneDetailsDisplay = document.getElementById('phoneDetailsDisplay');
-  const div = document.createElement('div');
-  div.classList.add('col');
-  div.innerHTML = `
+    const div = document.createElement('div');
+    div.classList.add('col');
+    div.innerHTML = `
             <div class="card">
             <img src="${dataDetail.image}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">${dataDetail.mainFeatures.chipSet}</h5>
-              <h5 class="card-brand">${dataDetail.releaseDate}</h5>
+              <h5 class="card-title">${dataDetail.mainFeatures}</h5>
+              <h5 class="card-brand">${dataDetail.releaseDate ? dataDetail.releaseDate : 'Comming soon'} </h5>
               `
 
-  phoneDetailsDisplay.appendChild(div)
-
+              phoneDetailsDisplay.appendChild(div)
+  
 }
