@@ -51,7 +51,11 @@ const displayMobileDetails = (detailsData) => {
             <div class="card">
             <img src="${dataDetail.image}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">${dataDetail.mainFeatures}</h5>
+              <h5 >Phone Features:</h5>
+              <h5>Chipset: ${dataDetail.mainFeatures.chipSet}</h5>
+              <h5>Display Size: ${dataDetail.mainFeatures.displaySize}</h5>
+              <h5>Memory Details: ${dataDetail.mainFeatures.memory}</h5>
+               <h5></h5>
               <h5 class="card-brand">${dataDetail.releaseDate ? dataDetail.releaseDate : 'Comming soon'} </h5>
               `
 
