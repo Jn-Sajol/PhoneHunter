@@ -24,9 +24,10 @@ const display = (datas) => {
   //   alert('No result found')
   // } 
     // console.log(cutData)
+    const getdisplay = document.getElementById('card-group');
+    getdisplay.innerHTML = '';
     for (const phone of cutData) {
       // console.log(phone.slug)
-      const getdisplay = document.getElementById('card-group');
       const div = document.createElement('div');
       div.classList.add('col');
       div.innerHTML = `
@@ -42,7 +43,7 @@ const display = (datas) => {
       getdisplay.appendChild(div)
     }
     // main.innerHTML = '';
-    // getdisplay.textContent = '';
+    
     
   
 }
@@ -60,6 +61,7 @@ const displayMobileDetails = (detailsData) => {
   const dataDetail = detailsData.data;
   // console.log(dataDetail.sensors)
   const phoneDetailsDisplay = document.getElementById('phoneDetailsDisplay');
+  phoneDetailsDisplay.textContent = '';
   const div = document.createElement('div');
   div.classList.add('col');
   div.innerHTML = `
