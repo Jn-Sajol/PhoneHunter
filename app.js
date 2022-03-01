@@ -13,7 +13,10 @@ document.getElementById('button').addEventListener('click', () => {
 })
 
 const display = (datas) => {
-  for (const phone of datas.data) {
+  const conArray = datas.data;
+  const cutData = conArray.slice(0,20);
+  // console.log(cutData)
+  for (const phone of cutData) {
     // console.log(phone.slug)
     const getdisplay = document.getElementById('card-group');
     const div = document.createElement('div');
@@ -65,6 +68,14 @@ const displayMobileDetails = (detailsData) => {
                <h5> ${dataDetail.mainFeatures.sensors[3]}</h5>
                <h5> ${dataDetail.mainFeatures.sensors[4]}</h5>
                <h5> ${dataDetail.mainFeatures.sensors[5]}</h5>
+
+               <h5 >Others:</h5>
+              <h5>Bluetooth: ${dataDetail.others.Bluetooth}</h5>
+              <h5>GPH: ${dataDetail.others.GPH}</h5>
+              <h5>NFC: ${dataDetail.others.NFC}</h5>
+              <h5>Radio: ${dataDetail.others.Radio}</h5>
+              <h5>USB: ${dataDetail.others.USB}</h5>
+              <h5>WLAN: ${dataDetail.others.WLAN}</h5>
                
               
               `
