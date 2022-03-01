@@ -1,5 +1,5 @@
 
-document.getElementById('button').addEventListener('click', function () {
+document.getElementById('button').addEventListener('click',  () => {
   const getInput = document.getElementById('button-input');
   const inputValue = getInput.value ;
   getInput.value = '';
@@ -12,7 +12,7 @@ document.getElementById('button').addEventListener('click', function () {
 
 })
 
-function display(datas) {
+const display = (datas) => {
   for (const phone of datas.data) {
     // console.log(phone.slug)
     const getdisplay = document.getElementById('card-group');
@@ -33,7 +33,7 @@ function display(datas) {
 }
 
 //fetch details of mobile
-function displayDitailsFetch (slug){
+const displayDitailsFetch = (slug) => {
   const url = `https://openapi.programming-hero.com/api/phone/${slug}`
   fetch(url)
   .then(res => res.json())
@@ -41,7 +41,7 @@ function displayDitailsFetch (slug){
 }
 
 //diplay details of mobile
-function displayMobileDetails (detailsData){
+const displayMobileDetails = (detailsData) => {
   let msg = 'comming soon'
   const dataDetail = detailsData.data;
   const phoneDetailsDisplay = document.getElementById('phoneDetailsDisplay');
