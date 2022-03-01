@@ -1,9 +1,9 @@
 
-document.getElementById('button').addEventListener('click',  () => {
+document.getElementById('button').addEventListener('click', () => {
   const getInput = document.getElementById('button-input');
-  const inputValue = getInput.value ;
+  const inputValue = getInput.value;
   getInput.value = '';
-  
+
 
   const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
   fetch(url)
@@ -36,29 +36,39 @@ const display = (datas) => {
 const displayDitailsFetch = (slug) => {
   const url = `https://openapi.programming-hero.com/api/phone/${slug}`
   fetch(url)
-  .then(res => res.json())
-  .then(detailsData => displayMobileDetails(detailsData))
+    .then(res => res.json())
+    .then(detailsData => displayMobileDetails(detailsData))
 }
 
 //diplay details of mobile
 const displayMobileDetails = (detailsData) => {
-  let msg = 'comming soon'
   const dataDetail = detailsData.data;
+  // console.log(dataDetail.sensors)
   const phoneDetailsDisplay = document.getElementById('phoneDetailsDisplay');
-    const div = document.createElement('div');
-    div.classList.add('col');
-    div.innerHTML = `
+  const div = document.createElement('div');
+  div.classList.add('col');
+  div.innerHTML = `
             <div class="card">
             <img src="${dataDetail.image}" class="card-img-top" alt="...">
             <div class="card-body">
+            <h5 >Phone Name:${dataDetail.name}</h5>
+            <h5 class="card-brand">Release Date: ${dataDetail.releaseDate ? dataDetail.releaseDate : 'Comming soon'} </h5>
               <h5 >Phone Features:</h5>
               <h5>Chipset: ${dataDetail.mainFeatures.chipSet}</h5>
               <h5>Display Size: ${dataDetail.mainFeatures.displaySize}</h5>
               <h5>Memory Details: ${dataDetail.mainFeatures.memory}</h5>
-               <h5></h5>
-              <h5 class="card-brand">${dataDetail.releaseDate ? dataDetail.releaseDate : 'Comming soon'} </h5>
+              <h5>Storage Details: ${dataDetail.mainFeatures.storage}</h5>
+               <h5>Sensors: </h5>
+               <h5> ${dataDetail.mainFeatures.sensors[0]}</h5>
+               <h5> ${dataDetail.mainFeatures.sensors[1]}</h5>
+               <h5> ${dataDetail.mainFeatures.sensors[2]}</h5>
+               <h5> ${dataDetail.mainFeatures.sensors[3]}</h5>
+               <h5> ${dataDetail.mainFeatures.sensors[4]}</h5>
+               <h5> ${dataDetail.mainFeatures.sensors[5]}</h5>
+               
+              
               `
 
-              phoneDetailsDisplay.appendChild(div)
-  
+  phoneDetailsDisplay.appendChild(div)
+
 }
