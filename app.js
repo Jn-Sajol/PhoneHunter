@@ -20,9 +20,9 @@ document.getElementById('button').addEventListener('click', () => {
 const display = (datas) => {
   const conArray = datas.data;
   const cutData = conArray.slice(0, 20);
-  if (!cutData) {
-    alert('nai')
-  } else {
+  // if (!cutData) {
+  //   alert('No result found')
+  // } 
     // console.log(cutData)
     for (const phone of cutData) {
       // console.log(phone.slug)
@@ -41,7 +41,10 @@ const display = (datas) => {
           `
       getdisplay.appendChild(div)
     }
-  }
+    // main.innerHTML = '';
+    // getdisplay.textContent = '';
+    
+  
 }
 
 //fetch details of mobile
@@ -63,7 +66,7 @@ const displayMobileDetails = (detailsData) => {
             <div class="card bg-dark text-white">
             <img src="${dataDetail.image}" class="card-img-top" alt="...">
             <div class="card-body">
-            <h5 >Phone Name:${dataDetail.name}</h5>
+            <h5 >Phone Name: ${dataDetail.name}</h5>
             <h5 class="card-brand">Release Date: ${dataDetail.releaseDate ? dataDetail.releaseDate : 'Comming soon'} </h5>
               <h5 >Phone Features:</h5>
               <h5>Chipset: ${dataDetail.mainFeatures.chipSet}</h5>
